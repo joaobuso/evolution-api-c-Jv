@@ -2103,7 +2103,7 @@ export class ChatwootService {
           const img = await Jimp.read(fileData);
           await img.cover(320, 180);
 
-          const processedBuffer = await img.getBufferAsync(Jimp.MIME_PNG);
+          const processedBuffer = await img.getBufferAsync('image/png');
 
           const fileStream = new Readable();
           fileStream._read = () => {}; // _read is required but you can noop it
