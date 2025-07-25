@@ -26,7 +26,7 @@ import axios from 'axios';
 import { proto } from 'baileys';
 import dayjs from 'dayjs';
 import FormData from 'form-data';
-import Jimp from 'jimp/es';
+import * as Jimp from 'jimp';
 import Long from 'long';
 import mimeTypes from 'mime-types';
 import path from 'path';
@@ -2100,7 +2100,7 @@ export class ChatwootService {
           const nameFile = `${random}.${mimeTypes.extension(mimeType)}`;
           const fileData = Buffer.from(imgBuffer.data, 'binary');
 
-          const img = await Jimp.read(fileData);
+          const img = await (Jimp as any).read(fileData);
           await img.cover(320, 180);
 
           const processedBuffer = await img.getBufferAsync('image/png');
